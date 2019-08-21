@@ -1,0 +1,150 @@
+version: '3.0'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:1.1.0-hadoop2.8-java8
+    container_name: namenode
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+      - 50070:50070
+  datanode1:
+    image: bde2020/hadoop-datanode:1.1.0-hadoop2.8-java8
+    container_name: datanode1
+    volumes:
+      - hadoop_datanode1:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+      - 50075:50075
+  datanode2:
+    image: bde2020/hadoop-datanode:1.1.0-hadoop2.8-java8
+    container_name: datanode2
+    volumes:
+      - hadoop_datanode2:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+      - 50076:50075
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.1.0
+    volumes:
+       - postgres-data:/var/lib/postgresql/data
+  hive-server:
+    image: plc9/hive-server-hadoop-2.8.0:first
+    container_name: hive-server
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      - "HIVE_CORE_CONF_javax_jdo_option_ConnectionURL=jdbc:postgresql://hive-metastore/metastore"
+      - "CORE_CONF_fs_defaultFS=hdfs://namenode:8020"
+      - "CORE_CONF_hadoop_proxyuser_hue_hosts=*"
+      - "CORE_CONF_hadoop_proxyuser_hue_groups=*"
+    ports:
+      - "10000:10000"
+  hive-metastore:
+    image: bde2020/hive:2.1.0-postgresql-metastore
+    container_name: hive-metastore
+    env_file:
+      - ./hadoop-hive.env
+    command: /opt/hive/bin/hive --service metastore
+  spark-master:
+    image: plc9/spark-master-hadoop2.8.0-hive:first
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+    env_file:
+      - ./hadoop-hive.env
+  spark-worker1:
+    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./hadoop-hive.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 5g
+        reservations:
+          cpus: '0.1'
+          memory: 4g
+  spark-worker2:
+    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./hadoop-hive.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 5g
+        reservations:
+          cpus: '0.1'
+          memory: 4g
+  spark-worker3:
+    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./hadoop-hive.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 5g
+        reservations:
+          cpus: '0.1'
+          memory: 4g
+  spark-worker4:
+    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+    ports:
+      - "8084:8084"
+    env_file:
+      - ./hadoop-hive.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 5g
+        reservations:
+          cpus: '0.1'
+          memory: 4g
+  hue:
+    image: bde2020/hdfs-filebrowser:3.11
+    ports:
+      - 8088:8088
+    environment:
+      - NAMENODE_HOST=namenode
+  
+volumes:
+  hadoop_namenode:
+  hadoop_datanode1:
+  hadoop_datanode2:
+  postgres-data:
