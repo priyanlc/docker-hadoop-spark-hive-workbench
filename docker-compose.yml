@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:1.1.0-hadoop2.8-java8
+    image: plc9/hadoop-namenode:1.1.0-hadoop2.8-java8
     container_name: namenode
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
@@ -13,7 +13,7 @@ services:
     ports:
       - 50070:50070
   datanode1:
-    image: bde2020/hadoop-datanode:1.1.0-hadoop2.8-java8
+    image: plc9/hadoop-datanode:1.1.0-hadoop2.8-java8
     container_name: datanode1
     volumes:
       - hadoop_datanode1:/hadoop/dfs/data
@@ -24,7 +24,7 @@ services:
     ports:
       - 50075:50075
   datanode2:
-    image: bde2020/hadoop-datanode:1.1.0-hadoop2.8-java8
+    image: plc9/hadoop-datanode:1.1.0-hadoop2.8-java8
     container_name: datanode2
     volumes:
       - hadoop_datanode2:/hadoop/dfs/data
@@ -51,13 +51,13 @@ services:
     ports:
       - "10000:10000"
   hive-metastore:
-    image: bde2020/hive:2.1.0-postgresql-metastore
+    image: plc9/hive:2.1.0-postgresql-metastore
     container_name: hive-metastore
     env_file:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
   spark-master:
-    image: plc9/spark-master-hadoop2.8.0-hive:first
+    image: plc9/spark-master-hadoop2.8.0-hive2
     container_name: spark-master
     ports:
       - 8080:8080
@@ -65,7 +65,7 @@ services:
     env_file:
       - ./hadoop-hive.env
   spark-worker1:
-    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
@@ -83,7 +83,7 @@ services:
           cpus: '0.1'
           memory: 4g
   spark-worker2:
-    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
@@ -101,7 +101,7 @@ services:
           cpus: '0.1'
           memory: 4g
   spark-worker3:
-    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
@@ -119,7 +119,7 @@ services:
           cpus: '0.1'
           memory: 4g
   spark-worker4:
-    image: plc9/spark-worker-hadoop2.8.0-hive:first
+    image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
