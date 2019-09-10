@@ -136,8 +136,15 @@ services:
         reservations:
           cpus: '0.1'
           memory: 4g
+  spark-notebook:
+    image: bde2020/spark-notebook:2.1.0-hadoop2.8-hive
+    container_name: spark-notebook
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+    - 9001:9001
   hue:
-    image: bde2020/hdfs-filebrowser:3.11
+    image: docker-hadoop-spark-hive-workbench_hue_pri1
     ports:
       - 8088:8088
     environment:

@@ -3,7 +3,7 @@
 docker-compose -f docker-compose.yml up -d namenode hive-metastore-postgresql
 docker-compose -f docker-compose.yml up -d datanode1 datanode2 hive-metastore
 docker-compose -f docker-compose.yml up -d hive-server
-docker-compose -f docker-compose.yml up -d spark-master spark-worker1 spark-worker2
+docker-compose -f docker-compose.yml up -d spark-master spark-worker1 spark-worker2 spark-notebook hue
 
 my_ip=`ip route get 1|awk '{print $NF;exit}'`
 echo "Namenode: http://${my_ip}:50070"
