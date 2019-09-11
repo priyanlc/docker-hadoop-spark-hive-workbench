@@ -1,0 +1,120 @@
+{
+  "interpreterSettings": {
+    "2EQB323GG": {
+      "id": "2EQB323GG",
+      "name": "spark",
+      "group": "spark",
+      "properties": {
+        "spark.executor.memory": "",
+        "args": "",
+        "zeppelin.spark.printREPLOutput": "true",
+        "spark.cores.max": "",
+        "zeppelin.dep.additionalRemoteRepository": "spark-packages,http://dl.bintray.com/spark-packages/maven,false;",
+        "zeppelin.spark.sql.stacktrace": "false",
+        "zeppelin.spark.importImplicit": "true",
+        "zeppelin.spark.concurrentSQL": "false",
+        "zeppelin.spark.useHiveContext": "true",
+        "zeppelin.pyspark.python": "python",
+        "zeppelin.dep.localrepo": "local-repo",
+        "zeppelin.R.knitr": "true",
+        "zeppelin.spark.maxResult": "1000",
+        "master": "spark://spark-master:7077",
+        "spark.app.name": "Zeppelin",
+        "zeppelin.R.image.width": "100%",
+        "zeppelin.R.render.options": "out.format \u003d \u0027html\u0027, comment \u003d NA, echo \u003d FALSE, results \u003d \u0027asis\u0027, message \u003d F, warning \u003d F",
+        "zeppelin.R.cmd": "R"
+      },
+      "status": "READY",
+      "interpreterGroup": [
+        {
+          "name": "spark",
+          "class": "org.apache.zeppelin.spark.SparkInterpreter",
+          "defaultInterpreter": true,
+          "editor": {
+            "language": "scala"
+          }
+        },
+        {
+          "name": "sql",
+          "class": "org.apache.zeppelin.spark.SparkSqlInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "language": "sql"
+          }
+        },
+        {
+          "name": "dep",
+          "class": "org.apache.zeppelin.spark.DepInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "language": "scala"
+          }
+        },
+        {
+          "name": "pyspark",
+          "class": "org.apache.zeppelin.spark.PySparkInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "language": "python"
+          }
+        },
+        {
+          "name": "r",
+          "class": "org.apache.zeppelin.spark.SparkRInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "language": "r"
+          }
+        }
+      ],
+      "dependencies": [],
+      "option": {
+        "remote": true,
+        "port": -1,
+        "perNote": "shared",
+        "perUser": "shared",
+        "isExistingProcess": false,
+        "setPermission": false,
+        "users": [],
+        "isUserImpersonate": false
+      }
+    }
+  },
+  "interpreterBindings": {},
+  "interpreterRepositories": [
+    {
+      "id": "central",
+      "type": "default",
+      "url": "http://repo1.maven.org/maven2/",
+      "releasePolicy": {
+        "enabled": true,
+        "updatePolicy": "daily",
+        "checksumPolicy": "warn"
+      },
+      "snapshotPolicy": {
+        "enabled": true,
+        "updatePolicy": "daily",
+        "checksumPolicy": "warn"
+      },
+      "mirroredRepositories": [],
+      "repositoryManager": false
+    },
+    {
+      "id": "local",
+      "type": "default",
+      "url": "file:///root/.m2/repository",
+      "releasePolicy": {
+        "enabled": true,
+        "updatePolicy": "daily",
+        "checksumPolicy": "warn"
+      },
+      "snapshotPolicy": {
+        "enabled": true,
+        "updatePolicy": "daily",
+        "checksumPolicy": "warn"
+      },
+      "mirroredRepositories": [],
+      "repositoryManager": false
+    }
+  ]
+}

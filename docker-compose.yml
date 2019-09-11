@@ -74,14 +74,6 @@ services:
       - "8081:8081"
     env_file:
       - ./hadoop-hive.env
-    deploy:
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 5g
-        reservations:
-          cpus: '0.1'
-          memory: 4g
   spark-worker2:
     image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
@@ -92,14 +84,6 @@ services:
       - "8082:8082"
     env_file:
       - ./hadoop-hive.env
-    deploy:
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 5g
-        reservations:
-          cpus: '0.1'
-          memory: 4g
   spark-worker3:
     image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
@@ -110,14 +94,6 @@ services:
       - "8083:8083"
     env_file:
       - ./hadoop-hive.env
-    deploy:
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 5g
-        reservations:
-          cpus: '0.1'
-          memory: 4g
   spark-worker4:
     image: plc9/spark-worker-hadoop2.8.0-hive2
     depends_on:
@@ -128,14 +104,6 @@ services:
       - "8084:8084"
     env_file:
       - ./hadoop-hive.env
-    deploy:
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 5g
-        reservations:
-          cpus: '0.1'
-          memory: 4g
   spark-notebook:
     image: bde2020/spark-notebook:2.1.0-hadoop2.8-hive
     container_name: spark-notebook
@@ -149,7 +117,20 @@ services:
       - 8088:8088
     environment:
       - NAMENODE_HOST=namenode
-  
+  zeppelin:
+      image: plc9/zeppelin_2_1
+      ports:
+        - 9090:9090
+      volumes:
+        - ./notebook:/opt/zeppelin/notebook
+      environment:
+        CORE_CONF_fs_defaultFS: "hdfs://namenode:8020"
+        SPARK_MASTER: "spark://spark-master:7077"
+        MASTER: "spark://spark-master:7077"
+        #SPARK_SUBMIT_OPTIONS: "--jars /opt/sansa-examples/jars/sansa-examples-spark-2016-12.jar"
+      depends_on:
+         - spark-master
+       
 volumes:
   hadoop_namenode:
   hadoop_datanode1:
