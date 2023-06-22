@@ -112,7 +112,7 @@ services:
     ports:
     - 9001:9001
   hue:
-    image: docker-hadoop-spark-hive-workbench_hue_pri1
+    image: bde2020/hdfs-filebrowser:3.11
     ports:
       - 8088:8088
     environment:
