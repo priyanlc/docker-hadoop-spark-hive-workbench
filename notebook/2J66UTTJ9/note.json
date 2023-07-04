@@ -1,0 +1,380 @@
+{
+  "paragraphs": [
+    {
+      "text": "%dep\nz.reset()  // Clean up previously added artifact and repository\n\n// Add Remote Repository\nz.addRepo(\"Maven Central\").url(\"https://repo1.maven.org/maven2\")\n\n// Add Artifacts\nz.load(\"org.scalatest:scalatest_2.12:3.2.9\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:31:01.247",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@34cfe675\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688501546127_372750338",
+      "id": "20230704-201226_1441658929",
+      "dateCreated": "2023-07-04 20:12:26.127",
+      "dateStarted": "2023-07-04 20:31:01.284",
+      "dateFinished": "2023-07-04 20:31:08.967",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.types.StructType",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:31:13.655",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.types.StructType\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688500783457_723619543",
+      "id": "20230704-195943_1484749849",
+      "dateCreated": "2023-07-04 19:59:43.458",
+      "dateStarted": "2023-07-04 20:31:13.686",
+      "dateFinished": "2023-07-04 20:31:21.824",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def init (appName:String): SparkSession \u003d {\n    val spark \u003d SparkSession.\n      builder().\n      appName(appName).\n      enableHiveSupport().\n      getOrCreate()\n\n    spark.sparkContext.setLogLevel(\"WARN\")\n    spark.conf.set(\"hive.metastore.try.direct.sql\",\"true\")\n    spark.conf.set(\"spark.sql.parquet.compression.codec\", \"snappy\")\n    spark.conf.set(\"parquet.compression\", \"SNAPPY\")\n    spark\n  }",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:31:24.445",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "init: (appName: String)org.apache.spark.sql.SparkSession\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688500895964_-1142616733",
+      "id": "20230704-200135_515957993",
+      "dateCreated": "2023-07-04 20:01:35.964",
+      "dateStarted": "2023-07-04 20:31:24.481",
+      "dateFinished": "2023-07-04 20:31:24.868",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "  class Parameters {\n    var watFileName:String \u003dnull\n    var jpgOutputPath:String \u003dnull\n    var pngOutputPath:String \u003dnull\n  }",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:31:27.747",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "defined class Parameters\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688500940338_1531982868",
+      "id": "20230704-200220_1336714985",
+      "dateCreated": "2023-07-04 20:02:20.338",
+      "dateStarted": "2023-07-04 20:31:27.777",
+      "dateFinished": "2023-07-04 20:31:28.093",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "  def getFileName(args:Array[String]):String \u003d{\n        if(args\u003d\u003dnull) return null\n\n    for(i\u003c-0 until args.length) {\n      if (args(i) \u003d\u003d \"__watFile\" \u0026\u0026 i + 1 \u003c args.length)\n        return args(i + 1)\n    }\n    return null\n  }",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:31:30.455",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "getFileName: (args: Array[String])String\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688501021412_1275503044",
+      "id": "20230704-200341_906771685",
+      "dateCreated": "2023-07-04 20:03:41.413",
+      "dateStarted": "2023-07-04 20:31:30.481",
+      "dateFinished": "2023-07-04 20:31:31.352",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.scalatest.funsuite.AnyFunSuite",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:26:09.636",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.scalatest.funsuite.AnyFunSuite\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688502201287_-76654723",
+      "id": "20230704-202321_104407369",
+      "dateCreated": "2023-07-04 20:23:21.287",
+      "dateStarted": "2023-07-04 20:26:09.659",
+      "dateFinished": "2023-07-04 20:26:09.915",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.scalatest.funsuite.AnyFunSuite\n\nclass SetSuite extends org.scalatest.funsuite.AnyFunSuite {\n\n  test(\"An empty Set should have size 0\") {\n    assert(Set.empty.size \u003d\u003d\u003d 0)\n  }\n\n  test(\"Invoking head on an empty Set should produce NoSuchElementException\") {\n    assertThrows[NoSuchElementException] {\n      Set.empty.head\n    }\n  }\n}",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:32:11.038",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.scalatest.funsuite.AnyFunSuite\ndefined class SetSuite\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688502254301_-134547812",
+      "id": "20230704-202414_828514315",
+      "dateCreated": "2023-07-04 20:24:14.301",
+      "dateStarted": "2023-07-04 20:32:11.064",
+      "dateFinished": "2023-07-04 20:32:12.050",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.scalatest.funsuite.AnyFunSuite\n\nclass FileNameTest extends org.scalatest.funsuite.AnyFunSuite {\n\n  def getFileName(args:Array[String]):String \u003d{\n    if(args\u003d\u003dnull) return null\n\n    for(i\u003c-0 until args.length) {\n      if (args(i) \u003d\u003d \"__watFile\" \u0026\u0026 i + 1 \u003c args.length)\n        return args(i + 1)\n    }\n    return null\n  }\n\n  test(\"getFileName should return correct file name when __watFile is present\") {\n    val args \u003d Array(\"arg1\", \"__watFile\", \"test.txt\", \"arg2\")\n    assert(getFileName(args) \u003d\u003d\u003d \"test.txt\")\n  }\n\n  test(\"getFileName should return null when __watFile is not present\") {\n    val args \u003d Array(\"arg1\", \"arg2\", \"arg3\")\n    assert(getFileName(args) \u003d\u003d\u003d null)\n  }\n\n  test(\"getFileName should return null when args is null\") {\n    val args \u003d null\n    assert(getFileName(args) \u003d\u003d\u003d null)\n  }\n}\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:32:52.190",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.scalatest.funsuite.AnyFunSuite\ndefined class FileNameTest\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688501369012_-1968664013",
+      "id": "20230704-200929_1354720046",
+      "dateCreated": "2023-07-04 20:09:29.012",
+      "dateStarted": "2023-07-04 20:32:52.205",
+      "dateFinished": "2023-07-04 20:32:52.951",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val suite \u003d new FileNameTest\nsuite.run\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-04 20:40:55.159",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoClassDefFoundError: Could not initialize class org.scalatest.Succeeded$\n  at org.scalatest.Assertions.$init$(Assertions.scala:1186)\n  at org.scalatest.funsuite.AnyFunSuite.\u003cinit\u003e(AnyFunSuite.scala:1563)\n  ... 55 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1688502836105_-1264709335",
+      "id": "20230704-203356_946083917",
+      "dateCreated": "2023-07-04 20:33:56.106",
+      "dateStarted": "2023-07-04 20:40:55.188",
+      "dateFinished": "2023-07-04 20:40:55.557",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1688502141730_-1797827617",
+      "id": "20230704-202221_1800068614",
+      "dateCreated": "2023-07-04 20:22:21.731",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "dataset_builder",
+  "id": "2J66UTTJ9",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

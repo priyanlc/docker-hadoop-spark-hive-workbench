@@ -5,7 +5,7 @@ services:
     image: plc9/hadoop-namenode:1.1.0-hadoop2.8-java8
     container_name: namenode
     volumes:
-      - hadoop_namenode:/hadoop/dfs/name
+      - ../../../../run/media/priyan/data1/namenode:/hadoop/dfs/name
     environment:
       - CLUSTER_NAME=test
     env_file:
@@ -16,7 +16,7 @@ services:
     image: plc9/hadoop-datanode:1.1.0-hadoop2.8-java8
     container_name: datanode1
     volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+      - ../../../../run/media/priyan/data1/node:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:50070"
     env_file:
@@ -27,7 +27,7 @@ services:
     image: plc9/hadoop-datanode:1.1.0-hadoop2.8-java8
     container_name: datanode2
     volumes:
-      - hadoop_datanode2:/hadoop/dfs/data
+      - ../../../../run/media/priyan/data2/node:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:50070"
     env_file:
@@ -37,7 +37,7 @@ services:
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.1.0
     volumes:
-       - postgres-data:/var/lib/postgresql/data
+       - ../../../../run/media/priyan/2684ef86-3827-4943-94ad-9cd1454b9741/postgres:/var/lib/postgresql/data
   hive-server:
     image: plc9/hive-server-hadoop-2.8.0:first
     container_name: hive-server
@@ -57,7 +57,7 @@ services:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
   spark-master:
-    image: plc9/spark-master-hadoop2.8.0-hive2
+    image: localhost:5000/spark-master-hadoop2.8.0-hive2
     container_name: spark-master
     ports:
       - 8080:8080
@@ -65,27 +65,31 @@ services:
     env_file:
       - ./hadoop-hive.env
   spark-worker1:
-    image: plc9/spark-worker-hadoop2.8.0-hive2
+    image: localhost:5000/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
       - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_EXECUTOR_MEMORY=32g
+      - SPARK_SUBMIT_OPTIONS= --executor-memory 32G
     ports:
       - "8081:8081"
     env_file:
       - ./hadoop-hive.env
   spark-worker2:
-    image: plc9/spark-worker-hadoop2.8.0-hive2
+    image: localhost:5000/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
       - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_EXECUTOR_MEMORY=32g
+      - SPARK_SUBMIT_OPTIONS= --executor-memory 32G
     ports:
       - "8082:8082"
     env_file:
       - ./hadoop-hive.env
   spark-worker3:
-    image: plc9/spark-worker-hadoop2.8.0-hive2
+    image: localhost:5000/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
@@ -95,7 +99,7 @@ services:
     env_file:
       - ./hadoop-hive.env
   spark-worker4:
-    image: plc9/spark-worker-hadoop2.8.0-hive2
+    image: localhost:5000/spark-worker-hadoop2.8.0-hive2
     depends_on:
       - spark-master
     environment:
@@ -125,14 +129,28 @@ services:
         - ./notebook:/opt/zeppelin/notebook
       environment:
         CORE_CONF_fs_defaultFS: "hdfs://namenode:8020"
-        SPARK_MASTER: "spark://spark-master:7077"
-        MASTER: "spark://spark-master:7077"
+        #SPARK_MASTER: "spark://spark-master:7077"
+        #MASTER: "spark://spark-master:7077"
+        #SPARK_EXECUTOR_MEMORY: "32G"
+        SPARK_SUBMIT_OPTIONS: "--executor-memory 32G"
         #SPARK_SUBMIT_OPTIONS: "--jars /opt/sansa-examples/jars/sansa-examples-spark-2016-12.jar"
       depends_on:
          - spark-master
        
-volumes:
-  hadoop_namenode:
-  hadoop_datanode1:
-  hadoop_datanode2:
-  postgres-data:
+#volumes:
+#  hadoop_namenode:
+#    driver: local
+#    driver_opts:
+#        device: /run/media/priyan/data1/namenode
+#  hadoop_datanode1:
+#    driver: local
+#    driver_opts:
+#      device: /run/media/priyan/data1/node
+#  hadoop_datanode2:
+#    driver: local
+#    driver_opts:
+#      device: /run/media/priyan/data2/node
+#  postgres-data:
+#    driver: local
+#    driver_opts:
+#      device: /run/media/priyan/2684ef86-3827-4943-94ad-9cd1454b9741/postgres

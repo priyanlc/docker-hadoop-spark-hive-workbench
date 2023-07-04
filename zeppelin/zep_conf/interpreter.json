@@ -5,7 +5,7 @@
       "name": "spark",
       "group": "spark",
       "properties": {
-        "spark.executor.memory": "",
+        "spark.executor.memory": "32",
         "args": "",
         "zeppelin.spark.printREPLOutput": "true",
         "spark.cores.max": "",

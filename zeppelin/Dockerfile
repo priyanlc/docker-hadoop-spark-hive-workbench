@@ -1,4 +1,4 @@
-FROM plc9/spark-master-hadoop2.8.0-hive2
+FROM localhost:5000/spark-master-hadoop2.8.0-hive2
 MAINTAINER Priyan
 
 ENV APACHE_SPARK_VERSION 2.2.0
